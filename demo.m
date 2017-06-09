@@ -3,14 +3,16 @@
 %%% Peter McCloskey
 %%% CS 1675 Intro to Computer Vision, University of Pittsburgh 2017
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-im = imresize(imread('images/beach.jpg'),.3);
-energyImage = energy_image(im);
-nSeams = 50;
-reducedColorImage = im;
+image_name = 'andie1.jpg';
+image_path = ['images/' image_name];
+image = imread(image_path);
+image = imresize(image,0.5);
+energyImage = energy_image(image);
+nSeams = 20;
+reducedColorImage = image;
 reducedEnergyImage = energyImage;
 for i = 1:nSeams
-    %[reducedColorImage,reducedEnergyImage] = reduceHeight(reducedColorImage, reducedEnergyImage);
+    [reducedColorImage,reducedEnergyImage] = reduceHeight(reducedColorImage, reducedEnergyImage);
     [reducedColorImage,reducedEnergyImage] = reduceWidth(reducedColorImage, reducedEnergyImage);
    
     if mod(i,3) == 0
@@ -18,7 +20,7 @@ for i = 1:nSeams
     end
 end
 %%
-figure,imshow(reducedColorImage);
+imshow(reducedColorImage);
 title('Final Reduced COLOR Image');
-figure,imshow(im);
+figure,imshow(image);
 title('Original COLOR Image');

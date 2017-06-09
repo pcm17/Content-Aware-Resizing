@@ -22,4 +22,3 @@
     reducedColorImage = newI;
     reducedEnergyImage = energy_image(reducedColorImage);
 end 
-
